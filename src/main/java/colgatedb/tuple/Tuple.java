@@ -1,6 +1,7 @@
 package colgatedb.tuple;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -24,6 +25,9 @@ import java.util.NoSuchElementException;
  */
 public class Tuple implements Serializable {
 
+    public TupleDesc td;
+    public Field[] data;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -32,14 +36,17 @@ public class Tuple implements Serializable {
      * @param td the schema of this tuple. It must be a valid TupleDesc instance with at least one field.
      */
     public Tuple(TupleDesc td) {
-        throw new UnsupportedOperationException("implement me!");
+        if (td.numFields() >= 1){
+            this.td = td;
+            this.data = new Field[td. numFields()];
+        }
     }
 
     /**
      * @return The TupleDesc representing the schema of this tuple.
      */
     public TupleDesc getTupleDesc() {
-        throw new UnsupportedOperationException("implement me!");
+        return this.td;
     }
 
     /**
@@ -51,7 +58,15 @@ public class Tuple implements Serializable {
      * @throws NoSuchElementException if i is not a valid field reference.
      */
     public void setField(int i, Field f) {
-        throw new UnsupportedOperationException("implement me!");
+        if ( i >= data.length || i < 0){
+           throw new NoSuchElementException ("i is not a valid field reference");
+        }
+        else if (!td.getFieldType(i).equals(f.getType())){
+            throw new RuntimeException("The types don't match");
+        }
+        else{
+            data[i] = f;
+        }
     }
 
     /**
@@ -60,7 +75,10 @@ public class Tuple implements Serializable {
      * @throws NoSuchElementException if i is not a valid field reference.
      */
     public Field getField(int i) {
-        throw new UnsupportedOperationException("implement me!");
+        if (i >= data.length || i < 0){
+            throw new NoSuchElementException ("i is not a valid field reference");
+        }
+        return data[i];
     }
 
     /**
@@ -72,7 +90,16 @@ public class Tuple implements Serializable {
      * where \t is a tab and \n is a newline
      */
     public String toString() {
-        throw new UnsupportedOperationException("implement me!");
+        String str = "";
+        for (int i = 0; i < data.length; i++){
+            if (i == data.length -1){
+                str = str + data[i] ;
+            }
+            else {
+                str = str + data[i] + "\t";
+            }
+        }
+        return str;
     }
 
 
@@ -81,7 +108,7 @@ public class Tuple implements Serializable {
      */
     public Iterator<Field> fields() {
         // hint: use java.util.Arrays.asList to convert array into a list, then return list iterator.
-        throw new UnsupportedOperationException("implement me!");
+        return Arrays.asList(data).iterator();
     }
 
     /**
