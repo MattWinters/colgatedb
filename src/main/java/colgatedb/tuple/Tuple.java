@@ -25,8 +25,9 @@ import java.util.NoSuchElementException;
  */
 public class Tuple implements Serializable {
 
-    public TupleDesc td;
-    public Field[] data;
+    private TupleDesc td;
+    private Field[] data;
+    private RecordId rid;
 
     private static final long serialVersionUID = 1L;
 
@@ -115,8 +116,7 @@ public class Tuple implements Serializable {
      * @return The RecordId representing the location of this tuple on disk. May be null.
      */
     public RecordId getRecordId() {
-         // you do not need to implement for lab 1
-        throw new UnsupportedOperationException("implement me!");
+         return rid;
     }
 
     /**
@@ -125,7 +125,6 @@ public class Tuple implements Serializable {
      * @param rid the new RecordId for this tuple.
      */
     public void setRecordId(RecordId rid) {
-         // you do not need to implement for lab 1
-        throw new UnsupportedOperationException("implement me!");
+         this.rid = rid;
     }
 }
