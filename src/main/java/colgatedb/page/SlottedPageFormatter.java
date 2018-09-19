@@ -3,6 +3,7 @@ package colgatedb.page;
 import colgatedb.tuple.Field;
 import colgatedb.tuple.Tuple;
 import colgatedb.tuple.TupleDesc;
+import java.lang.Math;
 
 import java.io.*;
 
@@ -65,7 +66,8 @@ public class SlottedPageFormatter {
      * @return number of tuples that this page can hold
      */
     public static int computePageCapacity(int pageSize, TupleDesc td) {
-        throw new UnsupportedOperationException("implement me!");
+        int capacity = (pageSize * 8)/ (td.getSize() * 8 + 1);
+        return (int) Math.floor(capacity);
     }
 
     /**
@@ -76,7 +78,8 @@ public class SlottedPageFormatter {
      * @return the size of the header in bytes.
      */
     public static int getHeaderSize(int numSlots) {
-        throw new UnsupportedOperationException("implement me!");
+        double size = Math.ceil(numSlots/8.0);
+        return (int) size;
     }
 
     /**
@@ -94,12 +97,36 @@ public class SlottedPageFormatter {
             // see the Javadocs for DataOutputStream for handy methods
             // to write out the data of a Field use the Field.serialize method
             // also, you may find it the markSlot method very useful here
-            
+
+            int numSlots = page.getNumSlots();
+            int headerSize = getHeaderSize(numSlots);
+
+            byte[] header = new byte[headerSize];
+            for(int i = 0; i < numSlots; i++){
+                boolean isUsed = page.isSlotUsed(i);
+                markSlot(i, header, isUsed);
+            }
+
+            System.out.println(header);
+
+            dos.write(header,0,headerSize);
+            baos.write(header, 0, headerSize);
+
             return baos.toByteArray();
         } catch (Exception e) {
             throw new PageException(e);
         }
     }
+
+//    // Helper function that will set the bit in the byte array to the desired value
+//    private static void setBit(byte[] data, int pos, int val) {
+//        int posByte = pos/8;
+//        int posBit = (pos%8)%8;
+//        byte oldByte = data[posByte];
+//        oldByte = (byte) (((0xFF7F>>posBit) & oldByte) & 0x00FF);
+//        byte newByte = (byte) ((val<<(8-(posBit+1))) | oldByte);
+//        data[posByte] = newByte;
+//    }
 
     /**
      * Populate the empty page with data that is read from the given bytes.  See the javadoc at the top of file
@@ -140,6 +167,17 @@ public class SlottedPageFormatter {
      * @param isUsed if true, slot should be set to 1; if false, set to 0
      */
     private static void markSlot(int i, byte[] header, boolean isUsed) {
-        throw new UnsupportedOperationException("implement me!");
+        int val;
+        if (isUsed) {
+            val = 1;
+        } else {
+            val = 0;
+        }
+        int posByte = i / 8;
+        int posBit = (i % 8) % 8;
+        byte oldByte = header[posByte];
+        oldByte = (byte) (((0xFF7F >> posBit) & oldByte) & 0x00FF);
+        byte newByte = (byte) ((val << (8 - (posBit + 1))) | oldByte);
+        header[posByte] = newByte;
     }
 }

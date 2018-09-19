@@ -3,6 +3,7 @@ package colgatedb.page;
 import colgatedb.tuple.RecordId;
 import colgatedb.tuple.Tuple;
 import colgatedb.tuple.TupleDesc;
+import colgatedb.page.SlottedPageFormatter;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -97,7 +98,8 @@ public class SlottedPage implements Page {
      * the page size and the schema (TupleDesc).
      */
     public int getNumSlots() {
-         return 5;  // this will need to be revised later
+        int size = SlottedPageFormatter.computePageCapacity(pageSize, td);
+        return size;  // this will need to be revised later
     }
 
     /**
@@ -222,7 +224,21 @@ public class SlottedPage implements Page {
 
         @Override
         public boolean hasNext() {
-            return currIdx < slots.length;
+            if (currIdx < slots.length){
+                if (isSlotEmpty(currIdx)){
+                    currIdx++;
+                    return hasNext();
+                }
+                else if (isSlotUsed(currIdx)){
+                    return true;
+                }
+                else {
+                    throw new NoSuchElementException ("ERROR IN THE HAS NEXT");
+                }
+            }
+            else{
+                return false;
+            }
         }
 
         @Override
@@ -230,16 +246,8 @@ public class SlottedPage implements Page {
             if (!hasNext()) {   // always check!
                 throw new NoSuchElementException();
             }
-
             Tuple nextValue = slots[currIdx];
             currIdx++;
-            while (nextValue == null){
-                if(!hasNext()){
-                    throw new NoSuchElementException();
-                }
-                nextValue = slots[currIdx];
-                currIdx++;
-            }
             return nextValue;
         }
 
