@@ -39,7 +39,7 @@ public class Tuple implements Serializable {
     public Tuple(TupleDesc td) {
         if (td.numFields() >= 1){
             this.td = td;
-            this.data = new Field[td. numFields()];
+            this.data = new Field[td.numFields()];
         }
     }
 

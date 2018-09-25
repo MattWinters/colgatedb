@@ -76,6 +76,10 @@ public class SlottedPage implements Page {
         return pid;
     }
 
+    public int getPageSize() {
+        return pageSize;
+    }
+
     /**
      * @param slotno the slot number
      * @return true if this slot is used (i.e., is occupied by a Tuple).
@@ -261,7 +265,7 @@ public class SlottedPage implements Page {
 
     @Override
     public byte[] getPageData() {
-         return new byte[1];  // this will need to be fixed later
+         return SlottedPageFormatter.pageToBytes(this, td, pageSize);  // this will need to be fixed later
     }
 
     /**
@@ -269,7 +273,7 @@ public class SlottedPage implements Page {
      * @param data
      */
     private void setPageData(byte[] data) {
-         // this will be filled in later...
+        SlottedPageFormatter.bytesToPage(data, this, td);
     }
 
     @Override

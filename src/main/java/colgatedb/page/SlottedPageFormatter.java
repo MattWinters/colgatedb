@@ -4,6 +4,7 @@ import colgatedb.tuple.Field;
 import colgatedb.tuple.Tuple;
 import colgatedb.tuple.TupleDesc;
 import java.lang.Math;
+import java.util.BitSet;
 
 import java.io.*;
 
@@ -98,20 +99,45 @@ public class SlottedPageFormatter {
             // to write out the data of a Field use the Field.serialize method
             // also, you may find it the markSlot method very useful here
 
+
             int numSlots = page.getNumSlots();
             int headerSize = getHeaderSize(numSlots);
-
             byte[] header = new byte[headerSize];
-            for(int i = 0; i < numSlots; i++){
-                boolean isUsed = page.isSlotUsed(i);
-                markSlot(i, header, isUsed);
+
+            //iterate through the slots and mark the bit in the header depending on weather the slot is used or not
+            for (int i = 0; i < numSlots; i++){
+                if(page.isSlotUsed(i)) {
+                    markSlot(i, header);
+                }
             }
-
-            System.out.println(header);
-
             dos.write(header,0,headerSize);
-            baos.write(header, 0, headerSize);
 
+            //iterate through the pages
+            //if the slot is used, get the tuple and write the fields to the dos
+            // if the pages are empty add 0s
+
+            for (int i = 0; i < numSlots; i++){
+                if(page.isSlotUsed(i)) {
+                    Tuple t = page.getTuple(i);
+                    TupleDesc tdTemp = t.getTupleDesc();
+                    for (int j = 0; j < tdTemp.numFields(); j++) {
+                        Field field = t.getField(j);
+                        field.serialize(dos);
+                    }
+                }
+                else {
+                    byte[] b =  new byte[td.getSize()];
+                    for (int idx = 0; idx < td.getSize(); idx++){
+                        b[idx] = 0;
+                    }
+                    dos.write(b);
+                }
+            }
+            byte[] excess = new byte[pageSize - dos.size()];
+            for(int i = 0; i < pageSize - dos.size(); i++ ){
+                excess[i] = 0;
+            }
+            dos.write(excess);
             return baos.toByteArray();
         } catch (Exception e) {
             throw new PageException(e);
@@ -144,6 +170,37 @@ public class SlottedPageFormatter {
             // to read the data associated with a Field in a tuple, use the Type.parse method
             // also, you may find it the isSlotUsed method very useful here
             dis.close();
+
+
+//            byte[] test = new byte[1];
+//            test[0] = 1;
+//            System.out.println("is slot used: " + isSlotUsed(0, test));
+
+            int numSlots = emptyPage.getNumSlots();
+            int headerSize = getHeaderSize(numSlots);
+            byte[] header = new byte[headerSize];
+
+            int numFields = td.numFields();
+
+            dis.read(header, 0, headerSize);
+//            for(int i = 0; i < header.length; i++){
+//                System.out.println(header[i]);
+//            }
+
+            for (int i = 0; i < numSlots; i++){
+                if (isSlotUsed(i, header)){
+                    Tuple tuple = new Tuple(td);
+                    for(int j = 0; j < numFields; j++) {
+                        Field f = td.getFieldType(j).parse(dis);
+                        tuple.setField(j, f);
+                    }
+                    emptyPage.insertTuple(i, tuple);
+                }
+                else{
+                    dis.skipBytes(td.getSize());
+                }
+            }
+
         } catch (IOException e) {
             throw new PageException(e);
         }
@@ -157,27 +214,24 @@ public class SlottedPageFormatter {
      * @return
      */
     private static boolean isSlotUsed(int i, byte[] header) {
-        throw new UnsupportedOperationException("implement me!");
+        int bytePos = i/8;
+        int bitPos = (i % 8);
+        byte b = header[bytePos];
+        b = (byte) (b & (byte) Math.pow(2, bitPos));
+        return b >= (byte) 1;
     }
 
     /**
      * Marks a slot in the header as used or not.  Optional helper method.
      * @param i slot index
      * @param header a byte header, formatted as described in the javadoc at the top.
-     * @param isUsed if true, slot should be set to 1; if false, set to 0
+     * //@param isUsed if true, slot should be set to 1; if false, set to 0
      */
-    private static void markSlot(int i, byte[] header, boolean isUsed) {
-        int val;
-        if (isUsed) {
-            val = 1;
-        } else {
-            val = 0;
-        }
+    private static void markSlot(int i, byte[] header) {
         int posByte = i / 8;
-        int posBit = (i % 8) % 8;
-        byte oldByte = header[posByte];
-        oldByte = (byte) (((0xFF7F >> posBit) & oldByte) & 0x00FF);
-        byte newByte = (byte) ((val << (8 - (posBit + 1))) | oldByte);
-        header[posByte] = newByte;
+        int posBit =  i % 8;
+
+        header[posByte] = (byte) (header[posByte]|(byte) Math.pow(2, posBit));
+
     }
 }
