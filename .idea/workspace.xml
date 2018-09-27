@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d4b828d0-4864-4b71-a0ca-e84312f265ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/colgatedb/colgatedb/page/SlottedPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/colgatedb/colgatedb/page/SlottedPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/colgatedb/colgatedb/page/SlottedPageFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/colgatedb/colgatedb/page/SlottedPageFormatter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/colgatedb/BufferManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/colgatedb/BufferManagerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPageFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPageFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/colgatedb/tuple/Tuple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/colgatedb/tuple/Tuple.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,23 +27,23 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="2" />
-          <entry key="java" value="37" />
+          <entry key="java" value="49" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="2" />
-          <entry key="JAVA" value="37" />
+          <entry key="JAVA" value="49" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="8136" />
+          <entry key="java" value="9047" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8136" />
+          <entry key="JAVA" value="9047" />
         </counts>
       </usages-collector>
     </session>
@@ -53,9 +51,18 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/PageId.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2700">
+            <state relative-caret-position="1980">
               <caret line="275" selection-start-line="275" selection-end-line="275" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,38 +77,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPageFormatter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="189" column="31" lean-forward="true" selection-start-line="189" selection-start-column="31" selection-end-line="189" selection-end-column="31" />
+            <state relative-caret-position="457">
+              <caret line="221" selection-start-line="221" selection-end-line="221" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/TupleDesc.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-778">
-              <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1418#1426#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/Type.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-44">
-              <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-              <folding>
-                <element signature="e#856#857#0" expanded="true" />
-                <element signature="e#888#889#0" expanded="true" />
-                <element signature="e#1275#1276#0" expanded="true" />
-                <element signature="e#1320#1321#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/page/SlottedPageFormatterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="154" selection-start-line="154" selection-end-line="154" />
+            <state relative-caret-position="76">
+              <caret line="362" column="24" selection-start-line="362" selection-start-column="24" selection-end-line="362" selection-end-column="24" />
               <folding>
                 <element signature="e#18940#18941#0" expanded="true" />
                 <element signature="e#19012#19013#0" expanded="true" />
@@ -121,22 +100,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/page/PageTestUtility.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/BufferManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="-16">
+              <caret line="35" column="48" lean-forward="true" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/Tuple.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/BufferManagerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="787">
-              <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+            <state relative-caret-position="139">
+              <caret line="109" column="50" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1153#1168#0" expanded="true" />
+                <element signature="e#2644#2645#0" expanded="true" />
+                <element signature="e#2716#2717#0" expanded="true" />
+                <element signature="e#2941#2942#0" expanded="true" />
+                <element signature="e#3013#3014#0" expanded="true" />
+                <element signature="e#3082#3083#0" expanded="true" />
+                <element signature="e#3154#3155#0" expanded="true" />
+                <element signature="e#3228#3229#0" expanded="true" />
+                <element signature="e#3300#3301#0" expanded="true" />
+                <element signature="e#3494#3495#0" expanded="true" />
+                <element signature="e#3677#3678#0" expanded="true" />
+                <element signature="e#3749#3750#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/BufferManagerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="52" column="5" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/DiskManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-107">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -144,7 +153,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/Page.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="-334">
               <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
             </state>
           </provider>
@@ -178,9 +187,11 @@
       <find>getSiz</find>
       <find>System</find>
       <find>tupl</find>
-      <find>fiel</find>
       <find>num</find>
       <find>cap</find>
+      <find>fiel</find>
+      <find>getP</find>
+      <find>Sys</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,6 +206,8 @@
         <option value="$PROJECT_DIR$/src/main/java/tutorials/IteratorExample.java" />
         <option value="$PROJECT_DIR$/src/main/java/colgatedb/tuple/Tuple.java" />
         <option value="$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/colgatedb/BufferManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/colgatedb/BufferManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPageFormatter.java" />
       </list>
     </option>
@@ -277,14 +290,6 @@
               <item name="colgatedb" type="b2602c69:ProjectViewProjectNode" />
               <item name="colgatedb" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tutorials" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="colgatedb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="colgatedb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -311,15 +316,6 @@
               <item name="colgatedb" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="colgatedb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="colgatedb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="colgatedb" type="462c0819:PsiDirectoryNode" />
-              <item name="tuple" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -332,7 +328,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537905286124" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537923403341" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/junit-4.12.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -363,6 +359,20 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BufferManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="colgatedb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="colgatedb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="colgatedb" />
+      <option name="MAIN_CLASS_NAME" value="colgatedb.BufferManagerTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -431,9 +441,11 @@
       <item itemvalue="Application.IteratorExample" />
       <item itemvalue="JUnit.SlottedPageMoreTest" />
       <item itemvalue="JUnit.SlottedPageFormatterTest.testHeaderSize" />
+      <item itemvalue="JUnit.BufferManagerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BufferManagerTest" />
         <item itemvalue="JUnit.SlottedPageFormatterTest.testHeaderSize" />
         <item itemvalue="JUnit.SlottedPageMoreTest" />
         <item itemvalue="JUnit.SlottedPageTest" />
@@ -453,44 +465,44 @@
       <updated>1536605462050</updated>
       <workItem from="1536605463684" duration="36115000" />
       <workItem from="1537297625991" duration="8726000" />
-      <workItem from="1537808151071" duration="28276000" />
+      <workItem from="1537808151071" duration="34501000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 13h 32m 34s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 13h 52m 32s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 13h 56m 50s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 14h 28m 07s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 14h 34m 01s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 15h 17m 26s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 15h 36m 08s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 15h 51m 03s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 15h 53m 58s.xml">
-      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 15h 54m 23s.xml">
+      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 15h 54m 50s.xml">
+      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BufferManagerTest - 2018.09.25 at 16h 09m 31s.xml">
+      <configuration name="BufferManagerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BufferManagerTest - 2018.09.25 at 16h 40m 28s.xml">
+      <configuration name="BufferManagerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BufferManagerTest - 2018.09.25 at 16h 47m 09s.xml">
+      <configuration name="BufferManagerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 20h 49m 42s.xml">
+      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 20h 50m 09s.xml">
+      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 20h 52m 57s.xml">
+      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 20h 56m 25s.xml">
+      <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SlottedPageFormatterTest - 2018.09.25 at 20h 56m 38s.xml">
       <configuration name="SlottedPageFormatterTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73117000" />
+    <option name="totallyTimeSpent" value="79342000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -510,7 +522,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Learn" order="3" />
       <window_info id="Capture Tool" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.21218638" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.14623655" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" />
@@ -519,9 +531,9 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3478803" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3553616" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.3466334" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.83622557" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.18952619" />
@@ -585,13 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/PageException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/tuple/RecordIdTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -649,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/PageId.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/Field.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -690,44 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2700">
-          <caret line="275" selection-start-line="275" selection-end-line="275" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2912#2913#0" expanded="true" />
-            <element signature="e#2943#2944#0" expanded="true" />
-            <element signature="e#9052#9053#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/TupleDesc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-778">
-          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1418#1426#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/RecordId.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/Page.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/Tuple.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="787">
@@ -745,17 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/page/SlottedPageFormatterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="154" selection-start-line="154" selection-end-line="154" />
-          <folding>
-            <element signature="e#18940#18941#0" expanded="true" />
-            <element signature="e#19012#19013#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/page/PageTestUtility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
@@ -763,10 +712,130 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/BufferManagerException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/TupleDesc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1418#1426#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/PageMaker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/PageException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/tuple/RecordId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/DiskManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-107">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/Page.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-334">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/PageId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/BufferManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16">
+          <caret line="35" column="48" lean-forward="true" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/BufferManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/BufferManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="109" column="50" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1153#1168#0" expanded="true" />
+            <element signature="e#2644#2645#0" expanded="true" />
+            <element signature="e#2716#2717#0" expanded="true" />
+            <element signature="e#2941#2942#0" expanded="true" />
+            <element signature="e#3013#3014#0" expanded="true" />
+            <element signature="e#3082#3083#0" expanded="true" />
+            <element signature="e#3154#3155#0" expanded="true" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3300#3301#0" expanded="true" />
+            <element signature="e#3494#3495#0" expanded="true" />
+            <element signature="e#3677#3678#0" expanded="true" />
+            <element signature="e#3749#3750#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/page/SlottedPageFormatterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="362" column="24" selection-start-line="362" selection-start-column="24" selection-end-line="362" selection-end-column="24" />
+          <folding>
+            <element signature="e#18940#18941#0" expanded="true" />
+            <element signature="e#19012#19013#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="275" selection-start-line="275" selection-end-line="275" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2912#2913#0" expanded="true" />
+            <element signature="e#2943#2944#0" expanded="true" />
+            <element signature="e#9052#9053#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/page/SlottedPageFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="189" column="31" lean-forward="true" selection-start-line="189" selection-start-column="31" selection-end-line="189" selection-end-column="31" />
+        <state relative-caret-position="457">
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

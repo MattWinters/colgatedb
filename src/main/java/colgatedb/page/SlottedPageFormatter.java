@@ -218,7 +218,8 @@ public class SlottedPageFormatter {
         int bitPos = (i % 8);
         byte b = header[bytePos];
         b = (byte) (b & (byte) Math.pow(2, bitPos));
-        return b >= (byte) 1;
+        boolean test = b >= (byte) 1;
+        return b != (byte) 0;
     }
 
     /**

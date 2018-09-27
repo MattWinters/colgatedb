@@ -4,6 +4,7 @@ import colgatedb.page.Page;
 import colgatedb.page.PageId;
 import colgatedb.page.PageMaker;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,9 @@ import java.util.Map;
 public class BufferManagerImpl implements BufferManager {
 
     private boolean allowEvictDirty = false;  // a flag indicating whether a dirty page is candidate for eviction
+    private int numPages;
+    private DiskManager dm;
+    private HashMap<PageId, Frame> cache = new HashMap<PageId, Frame>();
 
     /**
      * Construct a new buffer manager.
@@ -31,22 +35,50 @@ public class BufferManagerImpl implements BufferManager {
      * @param dm the disk manager to call to read/write pages
      */
     public BufferManagerImpl(int numPages, DiskManager dm) {
-        throw new UnsupportedOperationException("implement me!");
+        this.numPages = numPages;
+        this.dm = dm;
     }
 
 
     @Override
     public synchronized Page pinPage(PageId pid, PageMaker pageMaker) {
-        throw new UnsupportedOperationException("implement me!");
+        Page page;
+        Frame frame = cache.get(pid);
+        if (frame == null){
+            page = dm.readPage(pid, pageMaker);
+            frame = new Frame(page);
+            cache.put(pid, frame);
+        }
+        else {
+            page = frame.page;
+        }
+        frame.pinCount ++;
+        return page;
     }
 
     @Override
     public synchronized void unpinPage(PageId pid, boolean isDirty) {
-        throw new UnsupportedOperationException("implement me!");
+
+//        if (pinCount == 0){
+//            throw new BufferManagerException ("Pin Count is already 0");
+//        }
+//        //Checks if page is in the cache, if it isn't in the cache it will throw and exception
+//        //Page page = getPage(pid);
+//
+//        Page p = cache.get(pid);
+//        if (p == null){
+//            throw new BufferManagerException ("page is not in the cache");
+//        }
+//        pinCount --;
+//        isDirty = true;
+
     }
 
     @Override
     public synchronized void flushPage(PageId pid) {
+//        Page page = cache.get(pid);
+//        dm.writePage(page);
+    throw new UnsupportedOperationException("implement me!");
     }
 
     @Override
