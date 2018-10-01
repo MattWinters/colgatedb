@@ -29,7 +29,7 @@ public class BufferManagerImpl implements BufferManager {
     private int numPages;
     private DiskManager dm;
     private HashMap<PageId, Frame> cache = new HashMap<PageId, Frame>();
-    private LinkedList<PageId> queue = new LinkedList<PageId>();
+    private int LRUcount;
 
     /**
      * Construct a new buffer manager.
@@ -39,12 +39,12 @@ public class BufferManagerImpl implements BufferManager {
     public BufferManagerImpl(int numPages, DiskManager dm) {
         this.numPages = numPages;
         this.dm = dm;
+        LRUcount = 0;
     }
 
 
     @Override
     public synchronized Page pinPage(PageId pid, PageMaker pageMaker) {
-
         Page page;
         Frame frame = cache.get(pid);
         if (frame == null){
@@ -58,10 +58,10 @@ public class BufferManagerImpl implements BufferManager {
         else {
             page = frame.page;
         }
+        LRUcount ++;
         frame.pinCount ++;
-        //frame.isDirty = true;
+        frame.timeCounter = LRUcount;
         cache.replace(pid, frame);
-        queue.add(pid);
         return page;
     }
 
@@ -76,9 +76,6 @@ public class BufferManagerImpl implements BufferManager {
         if (frame.pinCount == 0){
             throw new BufferManagerException ("Pin Count is already 0");
         }
-
-
-        //!!!!!!!!!!!! NOT SURE IF THIS IS WHAT i'M SUPPOSED TO DO ASK!!!!!!!!!!!
         if (!frame.isDirty) {
             frame.isDirty = isDirty;
         }
@@ -109,17 +106,29 @@ public class BufferManagerImpl implements BufferManager {
     }
 
     public synchronized boolean evict(){
+        boolean pageCanBeEvicted = false;
+        int LRUpage = 0;
+        Frame frameToRemove = null;
+        PageId pidToRemove = null;
         for (PageId pid : cache.keySet()){
             Frame frame = getFrame(pid);
-            if (this.allowEvictDirty || !isDirty(pid)){
-                if (frame.pinCount <= 0) {
-                    dm.writePage(frame.page);
-                    cache.remove(pid, frame);
-                    return true;
+            if (LRUpage < frame.timeCounter) {
+                if (this.allowEvictDirty || !isDirty(pid)) {
+                    if (frame.pinCount <= 0) {
+                        LRUpage = frame.timeCounter;
+                        pidToRemove = pid;
+                        frameToRemove = frame;
+                        pageCanBeEvicted = true;
+                    }
                 }
             }
         }
-        throw new BufferManagerException ("there is no page to evict");
+        if (! pageCanBeEvicted){
+            throw new BufferManagerException ("there is no page to evict");
+        }
+        dm.writePage(frameToRemove.page);
+        cache.remove(pidToRemove, frameToRemove);
+        return true;
     }
 
 
@@ -182,11 +191,13 @@ public class BufferManagerImpl implements BufferManager {
         private Page page;
         private int pinCount;
         public boolean isDirty;
+        private int timeCounter;
 
         public Frame(Page page) {
             this.page = page;
             this.pinCount = 0;   // assumes Frame is created on first pin -- feel free to modify as you see fit
             this.isDirty = false;
+            this.timeCounter = 0;
         }
     }
 
