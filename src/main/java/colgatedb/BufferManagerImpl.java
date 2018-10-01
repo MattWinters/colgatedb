@@ -6,6 +6,7 @@ import colgatedb.page.PageMaker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -28,6 +29,7 @@ public class BufferManagerImpl implements BufferManager {
     private int numPages;
     private DiskManager dm;
     private HashMap<PageId, Frame> cache = new HashMap<PageId, Frame>();
+    private LinkedList<PageId> queue = new LinkedList<PageId>();
 
     /**
      * Construct a new buffer manager.
@@ -42,9 +44,13 @@ public class BufferManagerImpl implements BufferManager {
 
     @Override
     public synchronized Page pinPage(PageId pid, PageMaker pageMaker) {
+
         Page page;
         Frame frame = cache.get(pid);
         if (frame == null){
+            if (numPages <= cache.size()){
+                evict();
+            }
             page = dm.readPage(pid, pageMaker);
             frame = new Frame(page);
             cache.put(pid, frame);
@@ -53,67 +59,118 @@ public class BufferManagerImpl implements BufferManager {
             page = frame.page;
         }
         frame.pinCount ++;
+        //frame.isDirty = true;
+        cache.replace(pid, frame);
+        queue.add(pid);
         return page;
     }
 
     @Override
     public synchronized void unpinPage(PageId pid, boolean isDirty) {
 
-//        if (pinCount == 0){
-//            throw new BufferManagerException ("Pin Count is already 0");
-//        }
-//        //Checks if page is in the cache, if it isn't in the cache it will throw and exception
-//        //Page page = getPage(pid);
-//
-//        Page p = cache.get(pid);
-//        if (p == null){
-//            throw new BufferManagerException ("page is not in the cache");
-//        }
-//        pinCount --;
-//        isDirty = true;
+        //Checks if page is in the cache, if it isn't in the cache it will throw and exception
+        Frame frame = cache.get(pid);
+        if (frame == null){
+            throw new BufferManagerException ("page is not in the cache");
+        }
+        if (frame.pinCount == 0){
+            throw new BufferManagerException ("Pin Count is already 0");
+        }
 
+
+        //!!!!!!!!!!!! NOT SURE IF THIS IS WHAT i'M SUPPOSED TO DO ASK!!!!!!!!!!!
+        if (!frame.isDirty) {
+            frame.isDirty = isDirty;
+        }
+        frame.pinCount --;
+        cache.replace(pid,frame);
     }
 
     @Override
     public synchronized void flushPage(PageId pid) {
-//        Page page = cache.get(pid);
-//        dm.writePage(page);
-    throw new UnsupportedOperationException("implement me!");
+        Frame frame = getFrame(pid);
+        if (frame.isDirty){
+            dm.writePage(frame.page);
+            frame.isDirty = false;
+            cache.replace(pid, frame);
+        }
     }
 
     @Override
     public synchronized void flushAllPages() {
-        throw new UnsupportedOperationException("implement me!");
+        for(PageId pid : cache.keySet()){
+            flushPage(pid);
+        }
     }
 
     @Override
     public synchronized void evictDirty(boolean allowEvictDirty) {
-        throw new UnsupportedOperationException("implement me!");
+        this.allowEvictDirty = allowEvictDirty;
     }
+
+    public synchronized boolean evict(){
+        for (PageId pid : cache.keySet()){
+            Frame frame = getFrame(pid);
+            if (this.allowEvictDirty || !isDirty(pid)){
+                if (frame.pinCount <= 0) {
+                    dm.writePage(frame.page);
+                    cache.remove(pid, frame);
+                    return true;
+                }
+            }
+        }
+        throw new BufferManagerException ("there is no page to evict");
+    }
+
 
     @Override
     public synchronized void allocatePage(PageId pid) {
-        throw new UnsupportedOperationException("implement me!");
+        dm.allocatePage(pid);
     }
 
     @Override
     public synchronized boolean isDirty(PageId pid) {
-        throw new UnsupportedOperationException("implement me!");
+        Frame frame = cache.get(pid);
+        if (frame == null){
+            return false;
+        }
+        return frame.isDirty;
     }
 
     @Override
     public synchronized boolean inBufferPool(PageId pid) {
-        throw new UnsupportedOperationException("implement me!");
+        Frame frame = cache.get(pid);
+        return (frame != null);
+    }
+
+
+
+    public synchronized Frame getFrame(PageId pid) {
+        Frame frame = cache.get(pid);
+        if (frame == null){
+            throw new BufferManagerException ("page is not in the cache");
+        }
+        else {
+            return frame;
+        }
     }
 
     @Override
     public synchronized Page getPage(PageId pid) {
-        throw new UnsupportedOperationException("implement me!");
+        Frame frame = cache.get(pid);
+        if (frame == null){
+            throw new BufferManagerException ("page is not in the cache");
+        }
+        else {
+            return frame.page;
+        }
     }
 
     @Override
     public synchronized void discardPage(PageId pid) {
-        throw new UnsupportedOperationException("implement me!");
+        if(inBufferPool(pid)) {
+            cache.remove(pid);
+        }
     }
 
 
@@ -128,7 +185,7 @@ public class BufferManagerImpl implements BufferManager {
 
         public Frame(Page page) {
             this.page = page;
-            this.pinCount = 1;   // assumes Frame is created on first pin -- feel free to modify as you see fit
+            this.pinCount = 0;   // assumes Frame is created on first pin -- feel free to modify as you see fit
             this.isDirty = false;
         }
     }

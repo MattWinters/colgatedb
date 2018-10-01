@@ -88,6 +88,8 @@ public interface BufferManager {
      */
     boolean inBufferPool(PageId pid);
 
+
+
     /**
      * Gets a page from the buffer pool if it's there, otherwise throws an exception.
      * @param pid pid of desired page

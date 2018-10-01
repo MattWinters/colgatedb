@@ -5,6 +5,7 @@ import colgatedb.page.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -265,6 +266,7 @@ public class BufferManagerTest {
                 fail("Should have raised exception!");
             }
         } catch (BufferManagerException e) {
+
             // on the other hand, if allowEvictDirty is set to true, then
             // you should have been able to evict pid1 to make room for pid2
             if (allowEvictDirty) {
