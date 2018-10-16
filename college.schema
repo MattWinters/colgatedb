@@ -1,0 +1,4 @@
+Students(sid int, name string)
+Takes(sid int, cid int)
+Courses(cid int, title string)
+Profs(pid int, name string, favoriteCourse int)
