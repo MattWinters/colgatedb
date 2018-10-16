@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * course at Colgate.  If this file contains remnants from SimpleDB, we are
  * grateful for Sam's permission to use and adapt his materials.
  */
-public class TestUtility {
+public class    TestUtility {
     /**
      * @return a Type array of length len populated with Type.INT_TYPE
      */

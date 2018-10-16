@@ -38,7 +38,10 @@ import java.util.NoSuchElementException;
 public class HeapFile implements DbFile {
 
     private final SlottedPageMaker pageMaker;   // this should be initialized in constructor
-
+    private int numPages;
+    private int pageSize;
+    private int tableid;
+    private TupleDesc td;
     /**
      * Creates a heap file.
      * @param td the schema for records stored in this heapfile
@@ -47,35 +50,72 @@ public class HeapFile implements DbFile {
      * @param numPages size of this heapfile (i.e., number of pages already stored on disk)
      */
     public HeapFile(TupleDesc td, int pageSize, int tableid, int numPages) {
-        throw new UnsupportedOperationException("implement me!");
+        this.numPages = numPages;
+        this.pageSize = pageSize;
+        this.td = td;
+        this.tableid = tableid;
+        this.pageMaker = new SlottedPageMaker(td, pageSize);
     }
 
     /**
      * Returns the number of pages in this HeapFile.
      */
     public int numPages() {
-        throw new UnsupportedOperationException("implement me!");
+        return numPages;
     }
 
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("implement me!");
+        return tableid;
     }
 
     @Override
     public TupleDesc getTupleDesc() {
-        throw new UnsupportedOperationException("implement me!");
+        return td;
     }
+
+    public PageId findOrCreateEmptySlot (){
+        //Loop though every page to check it has an empty slot
+        for (int pageNum = 0; pageNum < numPages; pageNum++){
+            PageId pid = new SimplePageId(tableid, pageNum);
+            SlottedPage page = (SlottedPage) Database.getBufferManager().pinPage(pid, pageMaker);
+            for (int slot = 0; slot < page.getNumSlots(); slot ++){
+                if (page.isSlotEmpty(slot)){
+                    Database.getBufferManager().unpinPage(pid, false);
+                    return (pid);
+                }
+            }
+            Database.getBufferManager().unpinPage(pid, false);
+        }
+        PageId pid = new SimplePageId(tableid, numPages );
+        Database.getBufferManager().allocatePage(pid);
+        numPages ++;
+//        Database.getBufferManager().pinPage(pid, pageMaker);
+//        Database.getBufferManager().unpinPage(pid, false);
+        return pid;
+       }
 
     @Override
     public void insertTuple(TransactionId tid, Tuple t) throws TransactionAbortedException {
-        throw new UnsupportedOperationException("implement me!");
+        PageId pid = findOrCreateEmptySlot();
+        SlottedPage page = (SlottedPage) Database.getBufferManager().pinPage(pid, pageMaker);
+        // Go through the slots of the page and find the empty slot
+        for (int slot = 0; slot < page.getNumSlots(); slot ++) {
+            if (page.isSlotEmpty(slot)) {
+                page.insertTuple(slot, t);
+                break;
+            }
+        }
+        Database.getBufferManager().unpinPage(pid, true);
     }
 
 
     @Override
     public void deleteTuple(TransactionId tid, Tuple t) throws TransactionAbortedException {
-        throw new UnsupportedOperationException("implement me!");
+        PageId pid = t.getRecordId().getPageId();
+        SlottedPage page = (SlottedPage) Database.getBufferManager().pinPage(pid, pageMaker);
+        page.deleteTuple(t);
+        Database.getBufferManager().unpinPage(pid, true);
     }
 
     @Override
@@ -87,34 +127,72 @@ public class HeapFile implements DbFile {
      * @see DbFileIterator
      */
     private class HeapFileIterator implements DbFileIterator {
+        int currPage;
+        PageId pid;
+        SlottedPage page;
+        Iterator<Tuple> iterator;
+        TransactionId tid;
 
         public HeapFileIterator(TransactionId tid) {
-            throw new UnsupportedOperationException("implement me!");
+            this.tid = tid;
         }
 
         @Override
         public void open() throws TransactionAbortedException {
-            throw new UnsupportedOperationException("implement me!");
+            currPage = 0;
+            pid = new SimplePageId(tableid, currPage);
+            page = (SlottedPage) Database.getBufferManager().pinPage(pid, pageMaker);
+            Database.getBufferManager().unpinPage(pid, false);
+            iterator = page.iterator();
         }
 
         @Override
         public boolean hasNext() throws TransactionAbortedException {
-            throw new UnsupportedOperationException("implement me!");
+            if (iterator == null){
+                return false;
+            }
+            if (iterator.hasNext()) {
+                return true;
+            }
+            else {
+                currPage ++;
+                if (currPage < numPages) {
+                    pid = new SimplePageId(tableid, currPage);
+                    page = (SlottedPage) Database.getBufferManager().pinPage(pid, pageMaker);
+                    iterator = page.iterator();
+                    Database.getBufferManager().unpinPage(pid, false);
+                    return hasNext();
+
+                }
+            }
+            return false;
         }
 
         @Override
         public Tuple next() throws TransactionAbortedException, NoSuchElementException {
-            throw new UnsupportedOperationException("implement me!");
+            if (!hasNext()){
+                throw new TransactionAbortedException();
+            }
+            else{
+                Tuple nextTuple = iterator.next();
+                return nextTuple;
+            }
         }
 
         @Override
         public void rewind() throws TransactionAbortedException {
-            throw new UnsupportedOperationException("implement me!");
+            currPage = 0;
+            pid = new SimplePageId(tableid, currPage);
+            page = (SlottedPage) Database.getBufferManager().pinPage(pid, pageMaker);
+            iterator = page.iterator();
+            Database.getBufferManager().unpinPage(pid, false);
         }
 
         @Override
         public void close() {
-            throw new UnsupportedOperationException("implement me!");
+            page = null;
+            pid = null;
+            iterator = null;
         }
     }
 
