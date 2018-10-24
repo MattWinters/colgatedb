@@ -5,13 +5,11 @@ import colgatedb.DbException;
 import colgatedb.operators.*;
 import colgatedb.transactions.TransactionAbortedException;
 import colgatedb.transactions.TransactionId;
-import colgatedb.tuple.Op;
-import colgatedb.tuple.StringField;
-import colgatedb.tuple.Tuple;
-import colgatedb.tuple.Type;
+import colgatedb.tuple.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ColgateDB
@@ -45,6 +43,7 @@ public class OperatorMain {
         TransactionId tid = new TransactionId();
         SeqScan scanStudents = new SeqScan(tid, Database.getCatalog().getTableId("Students"));
         StringField alice = new StringField("alice", Type.STRING_LEN);
+
         Predicate p = new Predicate(1, Op.EQUALS, alice);
         DbIterator filterStudents = new Filter(p, scanStudents);
 
@@ -53,11 +52,55 @@ public class OperatorMain {
         filterStudents.open();
         while (filterStudents.hasNext()) {
             Tuple tup = filterStudents.next();
-            System.out.println("\t"+tup);
+            System.out.println("\t" + tup);
         }
         filterStudents.close();
 
 
+        tid = new TransactionId();
+        SeqScan Takes = new SeqScan(tid, Database.getCatalog().getTableId("Takes"));
+        SeqScan Professors = new SeqScan(tid, Database.getCatalog().getTableId("Profs"));
+        //IntField course = new IntField("cid", Type.INT_TYPE);
+        //IntField favoriteCourse = new IntField("favoriteCourse", Type.INT_TYPE);
+        JoinPredicate sidEq = new JoinPredicate(0, Op.EQUALS, 0);
+        DbIterator STjoin = new Join(sidEq, scanStudents, Takes);
+
+        //#################
+        // Print out TPjoin !!!!!!!!!
+
+
+        //
+
+        tid = new TransactionId();
+        StringField hay = new StringField("hay", Type.STRING_LEN);
+        Predicate namneEqHay = new Predicate(1, Op.EQUALS, hay);
+        DbIterator profsNamedHay = new Filter(namneEqHay, Professors);
+//############### Field number needs to be whatever the field corresponds too in STjoin#########
+        JoinPredicate cidEq = new JoinPredicate(3, Op.EQUALS, 2);
+        DbIterator CIDjoin = new Join(cidEq, STjoin, profsNamedHay);
+
+//        System.out.println("Query results:");
+//        CIDjoin.open();
+//        Tuple t;
+//        while (CIDjoin.hasNext()) {
+//            t = CIDjoin.next();
+//            System.out.println("\t"+ t);
+//        }
+//        CIDjoin.close();
+
+        ArrayList<Integer> fieldList = new ArrayList<Integer>();
+        fieldList.add(1);
+        Type[] types = new Type[]{Type.STRING_TYPE};
+        DbIterator names = new Project(fieldList, types, CIDjoin);
+
+        System.out.println("Query results:");
+        names.open();
+        Tuple t2;
+        while (names.hasNext()) {
+            t2 = names.next();
+            System.out.println("\t" + t2);
+        }
+        names.close();
     }
 
 }

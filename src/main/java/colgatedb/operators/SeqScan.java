@@ -2,7 +2,9 @@ package colgatedb.operators;
 
 import colgatedb.Database;
 import colgatedb.DbException;
+import colgatedb.dbfile.DbFile;
 import colgatedb.dbfile.DbFileIterator;
+import colgatedb.dbfile.HeapFile;
 import colgatedb.transactions.TransactionAbortedException;
 import colgatedb.transactions.TransactionId;
 import colgatedb.tuple.Tuple;
@@ -30,6 +32,12 @@ import java.util.NoSuchElementException;
  */
 public class SeqScan implements DbIterator {
 
+    private TransactionId tid;
+    private int tableid;
+    private String tableAlias;
+    private DbFile heapFile;
+    private DbFileIterator iterator;
+    private TupleDesc td;
 
     /**
      * Creates a sequential scan over the specified table as a part of the
@@ -44,8 +52,23 @@ public class SeqScan implements DbIterator {
      *                   are, but the resulting name can be null.fieldName,
      *                   tableAlias.null, or null.null).
      */
+
+
+
     public SeqScan(TransactionId tid, int tableid, String tableAlias) {
-        throw new UnsupportedOperationException("implement me!");
+        this.tid = tid;
+        this.tableid = tableid;
+        this.tableAlias = tableAlias;
+        this.heapFile = Database.getCatalog().getDatabaseFile(tableid);
+        this.iterator = heapFile.iterator(tid);
+        TupleDesc tdOriginal = heapFile.getTupleDesc();
+        Type[] typeAr = new Type[tdOriginal.numFields()];
+        String[] fieldAr = new String[tdOriginal.numFields()];
+        for (int i = 0; i < typeAr.length; i++){
+            typeAr[i] = tdOriginal.getFieldType(i);
+            fieldAr[i] = tableAlias + "." + tdOriginal.getFieldName(i);
+        }
+        this.td = new TupleDesc(typeAr, fieldAr);
     }
 
     public SeqScan(TransactionId tid, int tableid) {
@@ -57,18 +80,18 @@ public class SeqScan implements DbIterator {
      * be the actual name of the table in the catalog of the database
      */
     public String getTableName() {
-        throw new UnsupportedOperationException("implement me!");
+        return Database.getCatalog().getTableName(tableid);
     }
 
     /**
      * @return Return the alias of the table this operator scans.
      */
     public String getAlias() {
-        throw new UnsupportedOperationException("implement me!");
+        return tableAlias;
     }
 
     public void open() throws DbException, TransactionAbortedException {
-        throw new UnsupportedOperationException("implement me!");
+        iterator.open();
     }
 
     /**
@@ -81,24 +104,24 @@ public class SeqScan implements DbIterator {
      * prefixed with the tableAlias string from the constructor.
      */
     public TupleDesc getTupleDesc() {
-        throw new UnsupportedOperationException("implement me!");
+        return td;
     }
 
     public boolean hasNext() throws TransactionAbortedException, DbException {
-        throw new UnsupportedOperationException("implement me!");
+        return iterator.hasNext();
     }
 
     public Tuple next() throws NoSuchElementException,
             TransactionAbortedException, DbException {
-        throw new UnsupportedOperationException("implement me!");
+        return iterator.next();
     }
 
     public void close() {
-        throw new UnsupportedOperationException("implement me!");
+        iterator.close();
     }
 
     public void rewind() throws DbException, NoSuchElementException,
             TransactionAbortedException {
-        throw new UnsupportedOperationException("implement me!");
+        iterator.rewind();
     }
 }

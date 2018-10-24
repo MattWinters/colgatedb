@@ -27,6 +27,16 @@ import java.util.NoSuchElementException;
  */
 public class Join extends Operator {
 
+    private JoinPredicate p;
+    private DbIterator child1;
+    private DbIterator child2;
+    private boolean found = false;
+    private boolean checkingChild2 = false;
+    private boolean open = false;
+    private Tuple t1;
+    private Tuple t2;
+    private TupleDesc td;
+
 
     /**
      * Constructor. Accepts to children to join and the predicate to join them
@@ -37,32 +47,62 @@ public class Join extends Operator {
      * @param child2 Iterator for the right(inner) relation to join
      */
     public Join(JoinPredicate p, DbIterator child1, DbIterator child2) {
-        throw new UnsupportedOperationException("implement me!");
+        this.p = p;
+        this.child1 = child1;
+        this.child2 = child2;
+        td = TupleDesc.merge(child1.getTupleDesc(), child2.getTupleDesc());
+        setTupleDesc(td);
+
     }
 
     public JoinPredicate getJoinPredicate() {
-        throw new UnsupportedOperationException("implement me!");
+        return p;
     }
 
     @Override
     public void open() throws DbException, NoSuchElementException,
             TransactionAbortedException {
-        throw new UnsupportedOperationException("implement me!");
+        child1.open();
+        child2.open();
+        open = true;
     }
 
     @Override
     public void close() {
-        throw new UnsupportedOperationException("implement me!");
+        child1.close();
+        child2.close();
+        open = false;
     }
 
     @Override
     public void rewind() throws DbException, TransactionAbortedException {
-        throw new UnsupportedOperationException("implement me!");
+        child1.rewind();
+        child2.rewind();;
     }
 
     @Override
     public boolean hasNext() throws DbException, TransactionAbortedException {
-        throw new UnsupportedOperationException("implement me!");
+        while (!found && open && child1.hasNext()){
+            if(!checkingChild2) {
+                t1 = child1.next();
+            }
+            if (t1 != null){
+                while (!found && child2.hasNext()){
+                    checkingChild2 = true;
+                    t2 = child2.next();
+                    if (t2 != null){
+                        if (p.filter(t1, t2)){
+                            found = true;
+                        }
+                    }
+                }
+                if (!child2.hasNext()) {
+                    checkingChild2 = false;
+                    child2.rewind();
+                }
+            }
+        }
+        return found;
     }
 
     /**
@@ -85,17 +125,38 @@ public class Join extends Operator {
     @Override
     public Tuple next() throws DbException, TransactionAbortedException,
             NoSuchElementException {
-        throw new UnsupportedOperationException("implement me!");
+        if (!hasNext()) {
+            throw new NoSuchElementException("no more tuples!");
+        }
+        Tuple next = new Tuple(td);
+        found = false;
+        TupleDesc td1 = t1.getTupleDesc();
+        TupleDesc td2 = t2.getTupleDesc();
+        //loop through and set the next fields of the next tuple
+        //It will first set the fields from tuple one then the fields of tuple 2
+        for (int i = 0; i < td.numFields(); i++){
+            if (i < td1.numFields()){
+                next.setField(i, t1.getField(i));
+            }
+            else {
+                next.setField(i, t2.getField(i- td1.numFields()));
+            }
+        }
+        return next;
     }
 
     @Override
     public DbIterator[] getChildren() {
-        throw new UnsupportedOperationException("implement me!");
+        return new DbIterator[]{this.child1, this.child2};
     }
 
     @Override
     public void setChildren(DbIterator[] children) {
-        throw new UnsupportedOperationException("implement me!");
+        if (children.length != 2) {
+            throw new DbException("Expected only one child!");
+        }
+        child1 = children[0];
+        child2 = children[1];
     }
 
 }

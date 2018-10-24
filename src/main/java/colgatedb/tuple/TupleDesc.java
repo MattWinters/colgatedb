@@ -258,7 +258,7 @@ public class TupleDesc implements Serializable {
             fieldAr[i] = item.fieldName;
         }
         for (int idx = 0; idx < td2.itemList.size(); idx++){
-            TDItem item = td1.itemList.get(idx);
+            TDItem item = td2.itemList.get(idx);
             typeAr[idx + td1.itemList.size()] = item.fieldType;
             fieldAr[idx + td1.itemList.size()] = item.fieldName;
         }

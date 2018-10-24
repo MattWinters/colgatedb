@@ -37,7 +37,22 @@ public class Predicate implements Serializable {
      */
     public Predicate(int field, Op op, Field operand) {
         this.field = field;
-        this.op = op;
+        switch (this.op = op) {
+            case EQUALS:
+                break;
+            case GREATER_THAN:
+                break;
+            case LESS_THAN:
+                break;
+            case LESS_THAN_OR_EQ:
+                break;
+            case GREATER_THAN_OR_EQ:
+                break;
+            case LIKE:
+                break;
+            case NOT_EQUALS:
+                break;
+        }
         this.operand = operand;
     }
 
@@ -45,21 +60,21 @@ public class Predicate implements Serializable {
      * @return the field number
      */
     public int getField() {
-        throw new UnsupportedOperationException("implement me!");
+        return  field;
     }
 
     /**
      * @return the operator
      */
     public Op getOp() {
-        throw new UnsupportedOperationException("implement me!");
+        return op;
     }
 
     /**
      * @return the operand
      */
     public Field getOperand() {
-        throw new UnsupportedOperationException("implement me!");
+        return operand;
     }
 
     /**
@@ -72,7 +87,8 @@ public class Predicate implements Serializable {
      * @return true if the comparison is true, false otherwise.
      */
     public boolean filter(Tuple t) {
-        throw new UnsupportedOperationException("implement me!");
+        Field f = t.getField(field);
+        return f.compare(op, operand);
     }
 
     /**
@@ -80,6 +96,6 @@ public class Predicate implements Serializable {
      * operand_string
      */
     public String toString() {
-        throw new UnsupportedOperationException("implement me!");
+        return "f = " + field + ", op = " + op + ", operand = " + operand.toString();
     }
 }
