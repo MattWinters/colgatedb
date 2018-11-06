@@ -58,14 +58,16 @@ public class SynchronizedThreads {
          * Increase the counter by one.
          * @param name the name of the incrementer (i.e., whoever called this method)
          */
-        public synchronized void increment(String name) {
-            int currCount = count;  // read
-            // introduce a delay between read and write to "encourage" race conditions
-            System.out.println("Shared counter incremented by " + name + ".");
-            count = currCount + 1;  // write
+        public void increment(String name) {
+            synchronized(this) {
+                int currCount = count;  // read
+                // introduce a delay between read and write to "encourage" race conditions
+                System.out.println("Shared counter incremented by " + name + ".");
+                count = currCount + 1;  // write
+            }
         }
 
-        public synchronized int getCount() {
+        public int getCount() {
             return count;
         }
     }

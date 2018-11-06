@@ -2,7 +2,10 @@ package tutorials.concurrency_tutorial;
 
 public class ZigZagThreads {
     private static final LockManager lm = new LockManager();
-    public static LockManager getLockManager() { return lm; }
+
+    public static LockManager getLockManager() {
+        return lm;
+    }
 
     public static void main(String args[]) throws InterruptedException {
         int numZigZags = 10;
@@ -45,11 +48,35 @@ public class ZigZagThreads {
         private boolean needZig = true;
 
         public void acquireLock(boolean isZigger) {
-            // some code goes here
+            System.out.println(isZigger);
+            synchronized (this) {
+                boolean waiting = true;
+                while (waiting) {
+                    if (!inUse && isZigger == needZig) {
+                        // it's not in use, so we can take it!
+                        inUse = true;
+
+                        waiting = false;
+                    }
+                    if (!waiting) {
+                        try {
+                            wait();
+                        } catch (InterruptedException e) {}
+                    }
+                }
+            }
+
         }
 
         public synchronized void releaseLock() {
-            // some code goes here
+            inUse = false;
+            if (needZig) {
+                needZig = false;
+            } else {
+                needZig = true;
+            }
+            notifyAll();
         }
-    }}
+    }
+}
 
