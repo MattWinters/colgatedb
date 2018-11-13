@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d4b828d0-4864-4b71-a0ca-e84312f265ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/colgatedb/tutorials/concurrency_tutorial/LockManagerDemo$LockManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/colgatedb/tutorials/concurrency_tutorial/LockManagerDemo$LockManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/colgatedb/tutorials/concurrency_tutorial/ZigZagThreads$LockManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/colgatedb/tutorials/concurrency_tutorial/ZigZagThreads$LockManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockManagerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockTableEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockTableEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tutorials/concurrency_tutorial/LockManagerDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tutorials/concurrency_tutorial/LockManagerDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tutorials/concurrency_tutorial/ZigZagThreads.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tutorials/concurrency_tutorial/ZigZagThreads.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/colgatedb/transactions/ConcurrencyControlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/colgatedb/transactions/ConcurrencyControlTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/colgatedb/transactions/LockScheduleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/colgatedb/transactions/LockScheduleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/colgatedb/transactions/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/colgatedb/transactions/Schedule.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,23 +45,23 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="9" />
-          <entry key="java" value="205" />
+          <entry key="java" value="206" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="9" />
-          <entry key="JAVA" value="205" />
+          <entry key="JAVA" value="206" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="25040" />
+          <entry key="java" value="25315" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="25040" />
+          <entry key="JAVA" value="25315" />
         </counts>
       </usages-collector>
     </session>
@@ -114,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/transactions/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="137" column="123" selection-start-line="137" selection-start-column="123" selection-end-line="137" selection-end-column="123" />
+            <state relative-caret-position="20">
+              <caret line="137" column="30" selection-start-line="137" selection-end-line="138" />
             </state>
           </provider>
         </entry>
@@ -123,8 +114,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/transactions/LockScheduleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="127" column="8" selection-start-line="127" selection-start-column="8" selection-end-line="127" selection-end-column="8" />
+            <state relative-caret-position="-317">
+              <caret line="90" column="157" selection-start-line="90" selection-start-column="157" selection-end-line="90" selection-end-column="157" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/transactions/LockScheduleMoreTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
             </state>
           </provider>
         </entry>
@@ -170,8 +170,8 @@
       <find>acquire</find>
       <find>ta</find>
       <find>table</find>
-      <find>releas</find>
       <find>Sys</find>
+      <find>releas</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,9 +209,9 @@
         <option value="$PROJECT_DIR$/src/main/java/tutorials/concurrency_tutorial/LockManagerDemo.java" />
         <option value="$PROJECT_DIR$/src/test/java/colgatedb/transactions/ConcurrencyControlTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockManager.java" />
-        <option value="$PROJECT_DIR$/src/test/java/colgatedb/transactions/Schedule.java" />
         <option value="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockTableEntry.java" />
+        <option value="$PROJECT_DIR$/src/test/java/colgatedb/transactions/Schedule.java" />
         <option value="$PROJECT_DIR$/src/test/java/colgatedb/transactions/LockScheduleTest.java" />
       </list>
     </option>
@@ -340,7 +340,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542140539548" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542142445648" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/junit-4.12.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -361,8 +361,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.LockScheduleTest.test3">
-    <configuration name="ConcurrencyControlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.LockScheduleMoreTest">
+    <configuration name="LockManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="colgatedb" />
       <extension name="coverage">
         <pattern>
@@ -371,7 +371,53 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="colgatedb.transactions" />
-      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.ConcurrencyControlTest" />
+      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockManagerTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LockScheduleMoreTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="colgatedb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="colgatedb.transactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="colgatedb.transactions" />
+      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockScheduleMoreTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LockScheduleMoreTest.multipleQueuedSharedRequestsSimpler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="colgatedb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="colgatedb.transactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="colgatedb.transactions" />
+      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockScheduleMoreTest" />
+      <option name="METHOD_NAME" value="multipleQueuedSharedRequestsSimpler" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LockScheduleMoreTest.twoSimultaneousSharedLocks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="colgatedb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="colgatedb.transactions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="colgatedb.transactions" />
+      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockScheduleMoreTest" />
+      <option name="METHOD_NAME" value="twoSimultaneousSharedLocks" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -386,54 +432,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="colgatedb.transactions" />
       <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockScheduleTest" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LockScheduleTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="colgatedb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="colgatedb.transactions.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="colgatedb.transactions" />
-      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockScheduleTest" />
-      <option name="METHOD_NAME" value="test1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LockScheduleTest.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="colgatedb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="colgatedb.transactions.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="colgatedb.transactions" />
-      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockScheduleTest" />
-      <option name="METHOD_NAME" value="test3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LockScheduleTest.upgradeRequestCutsInLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="colgatedb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="colgatedb.transactions.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="colgatedb.transactions" />
-      <option name="MAIN_CLASS_NAME" value="colgatedb.transactions.LockScheduleTest" />
-      <option name="METHOD_NAME" value="upgradeRequestCutsInLine" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -454,19 +452,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.SlottedPageFormatterTest" />
+      <item itemvalue="JUnit.LockScheduleMoreTest" />
+      <item itemvalue="JUnit.LockScheduleMoreTest.multipleQueuedSharedRequestsSimpler" />
+      <item itemvalue="JUnit.LockScheduleMoreTest.twoSimultaneousSharedLocks" />
+      <item itemvalue="JUnit.LockManagerTest" />
       <item itemvalue="JUnit.LockScheduleTest" />
-      <item itemvalue="JUnit.LockScheduleTest.upgradeRequestCutsInLine" />
-      <item itemvalue="JUnit.ConcurrencyControlTest" />
-      <item itemvalue="JUnit.LockScheduleTest.test1" />
-      <item itemvalue="JUnit.LockScheduleTest.test3" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LockScheduleTest.test3" />
+        <item itemvalue="JUnit.LockScheduleMoreTest" />
         <item itemvalue="JUnit.LockScheduleTest" />
-        <item itemvalue="JUnit.LockScheduleTest.test1" />
-        <item itemvalue="JUnit.LockScheduleTest.upgradeRequestCutsInLine" />
-        <item itemvalue="JUnit.ConcurrencyControlTest" />
+        <item itemvalue="JUnit.LockManagerTest" />
+        <item itemvalue="JUnit.LockScheduleMoreTest.twoSimultaneousSharedLocks" />
+        <item itemvalue="JUnit.LockScheduleMoreTest.multipleQueuedSharedRequestsSimpler" />
       </list>
     </recent_temporary>
   </component>
@@ -488,44 +486,44 @@
       <workItem from="1540570237405" duration="139000" />
       <workItem from="1540921860580" duration="7400000" />
       <workItem from="1541529319406" duration="11153000" />
-      <workItem from="1541703144440" duration="33407000" />
+      <workItem from="1541703144440" duration="35029000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="LockScheduleTest_test3 - 2018.11.13 at 14h 59m 05s.xml">
-      <configuration name="LockScheduleTest.test3" configurationId="JUnit" />
+    <history-entry file="LockScheduleMoreTest - 2018.11.13 at 15h 36m 21s.xml">
+      <configuration name="LockScheduleMoreTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LockScheduleTest_test3 - 2018.11.13 at 15h 00m 46s.xml">
-      <configuration name="LockScheduleTest.test3" configurationId="JUnit" />
+    <history-entry file="LockScheduleMoreTest_multipleQueuedSharedRequests - 2018.11.13 at 15h 41m 16s.xml">
+      <configuration name="LockScheduleMoreTest.multipleQueuedSharedRequests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LockManagerTest - 2018.11.13 at 15h 15m 07s.xml">
+    <history-entry file="LockScheduleMoreTest_multipleQueuedSharedRequests - 2018.11.13 at 15h 42m 23s.xml">
+      <configuration name="LockScheduleMoreTest.multipleQueuedSharedRequests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockScheduleMoreTest - 2018.11.13 at 15h 43m 33s.xml">
+      <configuration name="LockScheduleMoreTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockScheduleMoreTest_multipleQueuedSharedRequestsSimpler - 2018.11.13 at 15h 43m 47s.xml">
+      <configuration name="LockScheduleMoreTest.multipleQueuedSharedRequestsSimpler" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockScheduleMoreTest - 2018.11.13 at 15h 46m 25s.xml">
+      <configuration name="LockScheduleMoreTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockScheduleMoreTest_twoSimultaneousSharedLocks - 2018.11.13 at 15h 46m 36s.xml">
+      <configuration name="LockScheduleMoreTest.twoSimultaneousSharedLocks" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockScheduleMoreTest - 2018.11.13 at 15h 46m 53s.xml">
+      <configuration name="LockScheduleMoreTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockManagerTest - 2018.11.13 at 15h 49m 26s.xml">
       <configuration name="LockManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ConcurrencyControlTest - 2018.11.13 at 15h 15m 14s.xml">
-      <configuration name="ConcurrencyControlTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LockScheduleTest - 2018.11.13 at 15h 15m 21s.xml">
+    <history-entry file="LockScheduleTest - 2018.11.13 at 15h 49m 37s.xml">
       <configuration name="LockScheduleTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LockScheduleTest_upgradeRequestCutsInLine - 2018.11.13 at 15h 19m 07s.xml">
-      <configuration name="LockScheduleTest.upgradeRequestCutsInLine" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LockScheduleTest - 2018.11.13 at 15h 19m 25s.xml">
-      <configuration name="LockScheduleTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LockScheduleTest_test1 - 2018.11.13 at 15h 20m 26s.xml">
-      <configuration name="LockScheduleTest.test1" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LockScheduleTest - 2018.11.13 at 15h 20m 31s.xml">
-      <configuration name="LockScheduleTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LockScheduleTest_test3 - 2018.11.13 at 15h 22m 22s.xml">
-      <configuration name="LockScheduleTest.test3" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236257000" />
+    <option name="totallyTimeSpent" value="237879000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,7 +537,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" side_tool="true" visible="true" weight="0.112544805" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" side_tool="true" visible="true" weight="0.112544805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -549,7 +547,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35815147" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.45699614" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.27086008" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
@@ -630,13 +628,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/operators/TupleIterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/operators/OperatorTestUtility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1011,13 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/transactions/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="137" column="123" selection-start-line="137" selection-start-column="123" selection-end-line="137" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/colgatedb/transactions/LockManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -1039,10 +1023,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/transactions/Schedule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="137" column="30" selection-start-line="137" selection-end-line="138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/transactions/LockScheduleMoreTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/colgatedb/transactions/LockScheduleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="127" column="8" selection-start-line="127" selection-start-column="8" selection-end-line="127" selection-end-column="8" />
+        <state relative-caret-position="-317">
+          <caret line="90" column="157" selection-start-line="90" selection-start-column="157" selection-end-line="90" selection-end-column="157" />
         </state>
       </provider>
     </entry>

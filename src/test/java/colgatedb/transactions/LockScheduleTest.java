@@ -88,23 +88,17 @@ public class LockScheduleTest {
         executeSchedule();
     }
 
-    //Test2 will check if in a possible deadlock situation where the exclusive lock is held by t1 preventing t2 and t3s request.
-    //t2 will request a share than an exclusive with t3 requesting an exclusive in between
-    //t2s request won't process as an upgrade when requested because the shared lock isn't held yet.
-    //To avoid deadlock, the manager will detect that t2 has a shared request in Q and merge the 2 requests into 1 exclusive.
+    //Test2 will check to make sure that an upgrade still waits for all of the other shared locks to be released before it gets the lock upgrade to exclusive
     @Test
     public void test2() {
         steps = new Schedule.Step[]{
-                new Schedule.Step(tid0, pid1, Schedule.Action.EXCLUSIVE),     // t1 requests exclusive
-                new Schedule.Step(tid0, pid1, Schedule.Action.ACQUIRED),  //t1 gets exclusive lock
-                new Schedule.Step(tid1, pid1, Schedule.Action.SHARED),  // t2 waiting for shared
-                new Schedule.Step(tid2, pid1, Schedule.Action.EXCLUSIVE),  // t3 requests exclusive
-                new Schedule.Step(tid1, pid1, Schedule.Action.EXCLUSIVE),   // t3 also requests exclusive, it is not an upgrade because t3 does not have the shared lock
-                new Schedule.Step(tid0, pid1, Schedule.Action.UNLOCK), // t1 releases the lock to next in queue
-                //#####??????//
-                new Schedule.Step(tid2, pid1, Schedule.Action.ACQUIRED), // t3 should now be able to secure the exclusive lock, the t2 shared request became an exclusive at the back of the queue
-                new Schedule.Step(tid2, pid1, Schedule.Action.UNLOCK), // t2 releases the lock for t3
-                new Schedule.Step(tid1, pid1, Schedule.Action.ACQUIRED)   // now t2 gets exclusive, the shared has been replaced with the exclusive
+                new Schedule.Step(tid0, pid1, Schedule.Action.SHARED),     // t1 requests Shared
+                new Schedule.Step(tid0, pid1, Schedule.Action.ACQUIRED),  //t1 gets Shared lock
+                new Schedule.Step(tid1, pid1, Schedule.Action.SHARED),  // t2 requests for shared
+                new Schedule.Step(tid1, pid1, Schedule.Action.ACQUIRED),  // t2 gets Shared
+                new Schedule.Step(tid0, pid1, Schedule.Action.EXCLUSIVE),   // t1 requests exclusive
+                new Schedule.Step(tid1, pid1, Schedule.Action.UNLOCK), // t2 releases the lock making t1 only shared lock holder
+                new Schedule.Step(tid0, pid1, Schedule.Action.ACQUIRED)   // now t1 gets exclusive upgrade
         };
                 executeSchedule();
     }
