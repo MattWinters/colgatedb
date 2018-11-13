@@ -112,6 +112,7 @@ public class ConcurrencyControlTest {
                     counter.increment(tid.toString());
                     lm.releaseLock(tid, pid);
                 }
+                System.out.println("tid: "+ tid + " is done");
             } catch (TransactionAbortedException e) {
                 fail("Should not abort");
             }

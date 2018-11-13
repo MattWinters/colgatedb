@@ -48,17 +48,16 @@ public class ZigZagThreads {
         private boolean needZig = true;
 
         public void acquireLock(boolean isZigger) {
-            System.out.println(isZigger);
+           // System.out.println(isZigger);
             synchronized (this) {
                 boolean waiting = true;
                 while (waiting) {
                     if (!inUse && isZigger == needZig) {
                         // it's not in use, so we can take it!
                         inUse = true;
-
                         waiting = false;
                     }
-                    if (!waiting) {
+                    if (waiting) {
                         try {
                             wait();
                         } catch (InterruptedException e) {}
@@ -70,11 +69,7 @@ public class ZigZagThreads {
 
         public synchronized void releaseLock() {
             inUse = false;
-            if (needZig) {
-                needZig = false;
-            } else {
-                needZig = true;
-            }
+            needZig = !needZig;
             notifyAll();
         }
     }

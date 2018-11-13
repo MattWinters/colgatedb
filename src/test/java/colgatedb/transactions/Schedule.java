@@ -135,6 +135,7 @@ public class Schedule {
                             break;
                         case UNLOCK:
                             checkLockState(tid, step.pid, true);
+                            System.out.println("here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                             lm.releaseLock(tid, step.pid);
                             locksAcquired.get(tid).remove(step.pid);
                             checkLockState(tid, step.pid, false);
@@ -161,6 +162,7 @@ public class Schedule {
                                 throw new ScheduleException("Lock not acquired!");
                             }
                     }
+
                 } catch (ScheduleException e) {
                     step.error = e;
                 }

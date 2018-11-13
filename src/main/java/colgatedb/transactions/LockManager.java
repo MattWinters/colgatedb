@@ -69,4 +69,10 @@ public interface LockManager {
      * @return a list of the transaction ids of the transactions holding the lock on given pid
      */
     List<TransactionId> getTidsForPage(PageId pid);
+
+    /**
+     *
+     * @return Lock table Entry
+     */
+    LockTableEntry getTableEntry();
 }
