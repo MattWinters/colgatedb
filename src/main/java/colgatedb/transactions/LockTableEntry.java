@@ -37,23 +37,38 @@ public class LockTableEntry {
         // you may wish to add statements here.
     }
 
+    /*
+    returns the table entry's lock type.
+     */
     public Permissions getLockType() {
         return lockType;
     }
 
+    /*
+    returns a set of tids that are currently holding locks.
+     */
     public Set<TransactionId> getLockHolders() {
         return lockHolders;
     }
 
+    /*
+    returns the list of current Lock Requests.
+     */
     public List<LockRequest> getRequests() {
         return requests;
     }
 
+    /*
+    returns the first tid in the request queue.
+     */
     public TransactionId getNextTransaction(){
         request = requests.get(0);
         return request.getTid();
     }
 
+    /*
+    removes a tid from the list tids that are holding locks.
+     */
     public void releaseLock (TransactionId tid) {
         lockHolders.remove(tid);
         if (lockHolders.size() == 0) {
@@ -61,6 +76,9 @@ public class LockTableEntry {
         }
     }
 
+    /*
+    Removes the request from the request queue and adds the tid to the list of tids that hold locks.
+     */
     public void setLock (TransactionId tid, Permissions perm){
         if (lockHolders.contains(tid)){
             lockHolders.remove(tid);
@@ -71,6 +89,10 @@ public class LockTableEntry {
         requests.remove(request);
     }
 
+    /*
+    Creates and adds a new LockRequest to the requests queue.
+    If the request is an upgrade it will be pushed to the front of the queue. Normal requests get added to the back of the queue.
+     */
     public void addRequest (TransactionId tid, Permissions perm , boolean upgrade){
         request = new LockRequest(tid, perm);
         if (upgrade){
@@ -82,22 +104,24 @@ public class LockTableEntry {
 
     }
 
-//    public boolean alreadyRequested (TransactionId tid, Permissions perm){
-//        LockRequest request = new LockRequest(tid, perm);
-//        if (request.contains)
-//    }
+    /*
+    The tid is removed from the requests queue.
+     */
+    public void releaseRequest (TransactionId tid, Permissions perm){
+        request = new LockRequest(tid, perm);
+        requests.remove(request);
+    }
+
 
     public String toString(){
         String str = "";
         str = str + "perm = " + lockType + "\n";
         str = str + "lockHolders = " + lockHolders.toString() + "\n";
-        str = str + "requests = " + requests.toString() + "\n";
-        str = str + "request = " + request.toString();
+        str = str + "requests = " + requests.toString();
+        //str = str + "request = " + request.toString();
         return str;
     }
 
-
-    // you may wish to implement methods here.
 
     /**
      * A class representing a single lock request.  Simply tracks the txn and the desired lock type.

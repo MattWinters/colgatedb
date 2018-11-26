@@ -111,12 +111,14 @@ public class LockScheduleTest {
                 new Schedule.Step(tid0, pid1, Schedule.Action.SHARED),     // t1 requests shared
                 new Schedule.Step(tid0, pid1, Schedule.Action.ACQUIRED),  //t1 gets shared lock
                 new Schedule.Step(tid1, pid1, Schedule.Action.SHARED),  // t2 request shared
-                new Schedule.Step(tid0, pid1, Schedule.Action.ACQUIRED),  //t2 gets shared lock
+                new Schedule.Step(tid1, pid1, Schedule.Action.ACQUIRED),  //t2 gets shared lock
                 new Schedule.Step(tid2, pid1, Schedule.Action.EXCLUSIVE),  // t3 requests exclusive
                 new Schedule.Step(tid0, pid1, Schedule.Action.UNLOCK), // t1 releases the lock to next in queue
                 new Schedule.Step(tid0, pid1, Schedule.Action.EXCLUSIVE),   // t1 now requests exclusive, t1 already released shared so it should go to the back of the queue (no upgrade)
                 new Schedule.Step(tid1, pid1, Schedule.Action.UNLOCK), // t2 releases the second shared lock, the exclusive locks in queue can now get lock
                 new Schedule.Step(tid2, pid1, Schedule.Action.ACQUIRED),   // now t2 gets exclusive, It couldn't until all shared were released
+                new Schedule.Step(tid2, pid1, Schedule.Action.UNLOCK),
+                new Schedule.Step(tid0, pid1, Schedule.Action.ACQUIRED)
         };
 
         executeSchedule();

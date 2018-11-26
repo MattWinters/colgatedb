@@ -70,9 +70,5 @@ public interface LockManager {
      */
     List<TransactionId> getTidsForPage(PageId pid);
 
-    /**
-     *
-     * @return Lock table Entry
-     */
-    LockTableEntry getTableEntry();
+
 }

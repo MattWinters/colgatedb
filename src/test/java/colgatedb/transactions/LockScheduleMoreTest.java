@@ -91,7 +91,6 @@ public class LockScheduleMoreTest {
                 new Schedule.Step(tid2, pid1, Schedule.Action.SHARED),
                 new Schedule.Step(tid0, pid1, Schedule.Action.UNLOCK),
                 new Schedule.Step(tid1, pid1, Schedule.Action.ACQUIRED),
-//                new Schedule.Step(tid1, pid1, Schedule.Action.ACQUIRED),
                 new Schedule.AcquiredStep(tid2, pid1, 4),
         };
         executeSchedule();
